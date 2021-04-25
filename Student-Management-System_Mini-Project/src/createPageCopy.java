@@ -23,6 +23,77 @@ public class createPageCopy extends javax.swing.JFrame {
     public createPageCopy() {
         initComponents();
     }
+    
+    public boolean validateString(String str) {
+      str = str.toLowerCase();
+      char[] charArray = str.toCharArray();
+      for (int i = 0; i < charArray.length; i++) {
+         char ch = charArray[i];
+         if (!(ch >= 'a' && ch <= 'z')) {
+            return false;
+         }
+      }
+      return true;
+   }
+    
+    public  boolean onlyDigits(String str)
+    {
+        if (str.matches("[0-9]+")){
+            return true;
+        } 
+        else{
+            return false;
+        }
+    }
+    
+    public boolean Validate(String Fname, String Mname, String Lname, String motherTongue, String modeofTrans, String rollNo){
+        boolean FnameErr, MnameErr, LnameErr, motherTongueErr, modeofTransErr, rollNoErr;
+        FnameErr = MnameErr = LnameErr = motherTongueErr = modeofTransErr = rollNoErr = true;
+        if(!validateString(Fname)){
+                JOptionPane.showMessageDialog(this, "First Name field cannot contain numbers or symbols");
+            }
+        else{
+            FnameErr = false;
+        }
+            if(!validateString(Mname)){
+                JOptionPane.showMessageDialog(this, "Middle Name field cannot contain numbers or symbols");
+            }else{
+            MnameErr = false;
+        }
+            
+            if(!validateString(Lname)){
+                JOptionPane.showMessageDialog(this, "Last Name field cannot contain numbers or symbols");
+            }
+            else{
+            LnameErr = false;
+        }
+            
+            if(!validateString(motherTongue)){
+                JOptionPane.showMessageDialog(this, "Mother Tongue field cannot contain numbers or symbols");
+            }
+            else{
+            motherTongueErr = false;
+        }
+            
+            if(!validateString(modeofTrans)){
+                JOptionPane.showMessageDialog(this, "Mode of Transport field cannot contain numbers or symbols");
+            }
+            else{
+            modeofTransErr = false;
+        }
+            
+            if(!onlyDigits(rollNo)){
+                 JOptionPane.showMessageDialog(this, "Roll Number field cannot contain letters or symbols");
+            }
+            else{
+            rollNoErr = false;
+        }
+          
+        if(!(FnameErr) && !(MnameErr) && !(LnameErr) && !(motherTongueErr) && !(modeofTransErr) && !(rollNoErr)){
+            return true;
+        }
+        return false;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,6 +105,7 @@ public class createPageCopy extends javax.swing.JFrame {
     private void initComponents() {
 
         jComboBox4 = new javax.swing.JComboBox<>();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -56,7 +128,6 @@ public class createPageCopy extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -79,6 +150,8 @@ public class createPageCopy extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -286,12 +359,10 @@ public class createPageCopy extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel15.setText("Student Name");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Open", "OBC", "SC", "ST", "SBC" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Open", "OBC", "SC", "ST", "SBC" }));
 
         jLabel16.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel16.setText("Gender");
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel3.setText("Please fill the details of the student below to enroll the student ");
@@ -334,7 +405,7 @@ public class createPageCopy extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel12.setText("Batch");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Paid", "Not Paid" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Paid", "Not Paid" }));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -357,6 +428,12 @@ public class createPageCopy extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel13.setText("Assigned Batch");
+
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setText("Male");
+
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("Female");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -390,13 +467,13 @@ public class createPageCopy extends javax.swing.JFrame {
                                                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jLabel18)))
-                                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(jPanel8Layout.createSequentialGroup()
                                                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGroup(jPanel8Layout.createSequentialGroup()
                                                             .addGap(33, 33, 33)
-                                                            .addComponent(jLabel4)))
+                                                            .addComponent(jLabel4))
+                                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                     .addGap(41, 41, 41)
                                                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -404,9 +481,12 @@ public class createPageCopy extends javax.swing.JFrame {
                                                             .addGap(10, 10, 10)
                                                             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(jLabel5)
-                                                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                                            .addGap(45, 45, 45)
+                                                                .addComponent(jLabel5)))
+                                                        .addGroup(jPanel8Layout.createSequentialGroup()
+                                                            .addComponent(jRadioButton1)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                            .addComponent(jRadioButton2)))))
+                                            .addGap(33, 33, 33)
                                             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(jPanel8Layout.createSequentialGroup()
@@ -466,9 +546,10 @@ public class createPageCopy extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2))
+                .addGap(30, 30, 30)
                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -573,7 +654,12 @@ public class createPageCopy extends javax.swing.JFrame {
         String Lname = jTextField3.getText();
         
         String caste = jComboBox2.getSelectedItem().toString();
-        String gender = jComboBox3.getSelectedItem().toString();
+        String gender = "";
+        if(jRadioButton1.isSelected()){
+            gender = "Male";
+        }else if(jRadioButton2.isSelected()){
+            gender = "Female";
+        }
         String motherTongue = jTextField7.getText();
         
         String modeofTrans = jTextField8.getText();
@@ -585,10 +671,17 @@ public class createPageCopy extends javax.swing.JFrame {
         String previousCertifications = jTextArea1.getText(); 
         
         if(Fname.isEmpty() || Mname.isEmpty() || Lname.isEmpty() || caste.isEmpty() || gender.isEmpty() || motherTongue.isEmpty() ||
-                modeofTrans.isEmpty() ||rollNo.isEmpty() ||division.isEmpty() || batch.isEmpty() ||feeStatus.isEmpty() ||previousCertifications.isEmpty()){
+                modeofTrans.isEmpty() ||rollNo.isEmpty() ||division.isEmpty() || batch.isEmpty() ||feeStatus.isEmpty() || previousCertifications.isEmpty() 
+                || caste == "Select" || motherTongue == "e.g. Hindi" || modeofTrans == "e.g. Bus"
+                || feeStatus == "Select" || previousCertifications == "Describe your previous achievement in 25-30 words"){
             JOptionPane.showMessageDialog(this, "Please fill all the fields before submitting");
         }
         else{
+         if(!Validate(Fname, Mname, Lname, motherTongue, modeofTrans,rollNo)){
+             JOptionPane.showMessageDialog(this, "Validation error occured !");
+         }
+         else{
+            
         
         try { Class.forName("com.mysql.cj.jdbc.Driver"); Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
                 PreparedStatement ps = (PreparedStatement) con.prepareStatement("insert into studentinfo values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
@@ -612,6 +705,8 @@ public class createPageCopy extends javax.swing.JFrame {
             }
         JOptionPane.showMessageDialog(this, "Student record of student with roll number " + rollNo + " enrolled !");
         }
+        }
+            
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -658,6 +753,7 @@ public class createPageCopy extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -666,7 +762,6 @@ public class createPageCopy extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -693,6 +788,8 @@ public class createPageCopy extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;

@@ -17,6 +17,8 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -388,7 +390,6 @@
                                                               <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
                                                           </Group>
                                                       </Group>
-                                                      <Component id="jComboBox2" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Group type="103" groupAlignment="0" attributes="0">
                                                               <Component id="jTextField1" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
@@ -396,6 +397,7 @@
                                                                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                                               </Group>
+                                                              <Component id="jComboBox2" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
                                                           </Group>
                                                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -405,13 +407,17 @@
                                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                                       <Component id="jLabel16" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
                                                                       <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                                      <Component id="jComboBox3" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                                                                   </Group>
+                                                              </Group>
+                                                              <Group type="102" alignment="0" attributes="0">
+                                                                  <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
+                                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                                  <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
                                                               </Group>
                                                           </Group>
                                                       </Group>
                                                   </Group>
-                                                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="jTextField3" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
                                                       <Group type="102" alignment="0" attributes="0">
@@ -494,10 +500,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="jLabel18" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jTextField8" min="-2" max="-2" attributes="0"/>
@@ -580,12 +587,13 @@
             <Component class="javax.swing.JComboBox" name="jComboBox2">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="Open"/>
-                    <StringItem index="1" value="OBC"/>
-                    <StringItem index="2" value="SC"/>
-                    <StringItem index="3" value="ST"/>
-                    <StringItem index="4" value="SBC"/>
+                  <StringArray count="6">
+                    <StringItem index="0" value="Select"/>
+                    <StringItem index="1" value="Open"/>
+                    <StringItem index="2" value="OBC"/>
+                    <StringItem index="3" value="SC"/>
+                    <StringItem index="4" value="ST"/>
+                    <StringItem index="5" value="SBC"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -600,20 +608,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Gender"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox3">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="Male"/>
-                    <StringItem index="1" value="Female"/>
-                    <StringItem index="2" value="Other"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
@@ -722,9 +716,10 @@
             <Component class="javax.swing.JComboBox" name="jComboBox1">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
-                    <StringItem index="0" value="Paid"/>
-                    <StringItem index="1" value="Not Paid"/>
+                  <StringArray count="3">
+                    <StringItem index="0" value="Select"/>
+                    <StringItem index="1" value="Paid"/>
+                    <StringItem index="2" value="Not Paid"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -770,6 +765,22 @@
                   <Font name="SansSerif" size="12" style="0"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Assigned Batch"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Male"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Female"/>
               </Properties>
             </Component>
           </SubComponents>
