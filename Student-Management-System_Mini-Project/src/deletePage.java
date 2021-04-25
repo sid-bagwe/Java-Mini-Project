@@ -1,3 +1,10 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -161,9 +168,7 @@ public class deletePage extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jButton4)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jButton4)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,13 +219,11 @@ public class deletePage extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(229, 229, 229))))
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,6 +255,11 @@ public class deletePage extends javax.swing.JFrame {
         jButton7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton7.setText("Delete");
         jButton7.setToolTipText("");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel2.setText("OR");
@@ -431,7 +439,55 @@ public class deletePage extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        String fromRollno = (jTextField10.getText());
+        String toRollno = jTextField11.getText();
+        JFrame f = new JFrame("Confirm Delete");
+        int result = JOptionPane.showConfirmDialog(f,"Are you sure you want to delete multiple records from roll number " + fromRollno + " to roll number "+ toRollno +  "\'s records ?", "Confirm Delete",
+               JOptionPane.YES_NO_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+        
+        if(result == JOptionPane.YES_OPTION){
+                try { Class.forName("com.mysql.cj.jdbc.Driver"); Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+                    PreparedStatement ps = (PreparedStatement) con.prepareStatement("delete from studentinfo where (roll >= ? && roll <= ?);");
+                    ps.setString(1,fromRollno);
+                    ps.setString(2,toRollno);
+                    int row=ps.executeUpdate();
+                    con.close();
+                }
+                catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e);
+                }
+                JOptionPane.showMessageDialog(this, "Record of students from roll number " + fromRollno + " to roll number "+ toRollno +  " is successfully deleted !");
+        }
+        else{
+             JOptionPane.showMessageDialog(this, "Record of students from roll number " + fromRollno + " to roll number "+ toRollno + " is not deleted ! Error occured !");
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        String Rollno = (jTextField9.getText());
+        JFrame f = new JFrame("Confirm Delete");
+        int result = JOptionPane.showConfirmDialog(f,"Are you sure you want to delete roll number " + Rollno + "\'s records ?", "Confirm Delete",
+               JOptionPane.YES_NO_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+        
+        if(result == JOptionPane.YES_OPTION){
+                try { Class.forName("com.mysql.cj.jdbc.Driver"); Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+                    PreparedStatement ps = (PreparedStatement) con.prepareStatement("delete from studentinfo where roll = ? ;");
+                    ps.setString(1,Rollno);
+                    int row=ps.executeUpdate();
+                    con.close();
+                }
+                catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e);
+                }
+                JOptionPane.showMessageDialog(this, "Record of student " + Rollno + " is successfully deleted !");
+        }
+        else{
+             JOptionPane.showMessageDialog(this, "Record of student " + Rollno + " is not deleted ! Error occured !");
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
