@@ -8,6 +8,13 @@
  *
  * @author Ajit B
  */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 public class createPageCopy extends javax.swing.JFrame {
 
     /**
@@ -26,6 +33,7 @@ public class createPageCopy extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox4 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -71,6 +79,8 @@ public class createPageCopy extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -556,6 +566,53 @@ public class createPageCopy extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        // Submit button
+        
+        String Fname = jTextField1.getText();
+        String Mname = jTextField2.getText();
+        String Lname = jTextField3.getText();
+        
+        String caste = jComboBox2.getSelectedItem().toString();
+        String gender = jComboBox3.getSelectedItem().toString();
+        String motherTongue = jTextField7.getText();
+        
+        String modeofTrans = jTextField8.getText();
+        String rollNo = jTextField4.getText();
+        String division = jTextField5.getText();
+        String batch =  jTextField6.getText();
+
+        String feeStatus = jComboBox1.getSelectedItem().toString();
+        String previousCertifications = jTextArea1.getText(); 
+        
+        if(Fname.isEmpty() || Mname.isEmpty() || Lname.isEmpty() || caste.isEmpty() || gender.isEmpty() || motherTongue.isEmpty() ||
+                modeofTrans.isEmpty() ||rollNo.isEmpty() ||division.isEmpty() || batch.isEmpty() ||feeStatus.isEmpty() ||previousCertifications.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please fill all the fields before submitting");
+        }
+        else{
+        
+        try { Class.forName("com.mysql.cj.jdbc.Driver"); Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+                PreparedStatement ps = (PreparedStatement) con.prepareStatement("insert into studentinfo values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+                ps.setString(1,Fname);
+                ps.setString(2,Mname);
+                ps.setString(3,Lname);
+                ps.setString(4,caste);
+                ps.setString(5,gender);
+                ps.setString(6,motherTongue);
+                ps.setString(7, modeofTrans);
+                ps.setString(8, rollNo);
+                ps.setString(9, division);
+                ps.setString(10, batch);
+                ps.setString(11, feeStatus);
+                ps.setString(12, previousCertifications);
+                int row=ps.executeUpdate();
+                con.close();
+            }
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        JOptionPane.showMessageDialog(this, "Student record of student with roll number " + rollNo + " enrolled !");
+        }
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -610,6 +667,7 @@ public class createPageCopy extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

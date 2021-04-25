@@ -69,7 +69,6 @@ public class updatePage extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
@@ -473,9 +472,6 @@ public class updatePage extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jPanel8);
 
-        jLabel19.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel19.setText("Please fill the details of the student below to enroll the student ");
-
         jLabel21.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         jLabel21.setText("Please enter the roll number of the student whose record you wish to update");
 
@@ -509,11 +505,6 @@ public class updatePage extends javax.swing.JFrame {
                         .addGap(61, 61, 61)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(18, 18, 18)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
-                    .addGap(19, 19, 19)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -530,11 +521,6 @@ public class updatePage extends javax.swing.JFrame {
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(369, 369, 369)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(593, Short.MAX_VALUE)))
         );
 
         pack();
@@ -650,7 +636,6 @@ public class updatePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
