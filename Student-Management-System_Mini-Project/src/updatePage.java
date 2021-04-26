@@ -1,3 +1,11 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,6 +23,21 @@ public class updatePage extends javax.swing.JFrame {
      */
     public updatePage() {
         initComponents();
+    }
+    
+    public void clear(){
+    jTextField1.setText("");
+    jTextField2.setText("");
+    jTextField3.setText("");
+    jComboBox2.setSelectedItem("Select");
+    jComboBox3.setSelectedItem("Select");
+    jTextField7.setText("");
+    jTextField8.setText("");
+    jTextField5.setText("");
+    jTextField6.setText("");
+    jComboBox1.setSelectedItem("Select");
+    jTextArea1.setText("");
+    jTextField9.setText("");
     }
 
     /**
@@ -485,6 +508,11 @@ public class updatePage extends javax.swing.JFrame {
         jLabel22.setText("Roll number");
 
         jButton7.setText("Get Details");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -567,6 +595,53 @@ public class updatePage extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        String Fname, Mname, Lname, caste, gender, motherTongue, modeofTrans, branch, batch, feeStatus, certifications;
+        String rollNo = jTextField9.getText();
+        Fname = jTextField1.getText();
+        Mname = jTextField2.getText();
+        Lname = jTextField3.getText();
+        caste = jComboBox2.getSelectedItem().toString();
+        gender = jComboBox3.getSelectedItem().toString();
+        motherTongue = jTextField7.getText();
+        modeofTrans = jTextField8.getText();
+        branch = jTextField5.getText();
+        batch = jTextField6.getText();
+        feeStatus = jComboBox1.getSelectedItem().toString();
+        certifications = jTextArea1.getText();
+        try { Class.forName("com.mysql.cj.jdbc.Driver"); Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+                    PreparedStatement ps = (PreparedStatement) con.prepareStatement("update studentinfo set fname = ?, mname = ?, lname = ?, caste = ?, gender = ?, mothertongue = ?, mode = ?, branch = ?, batch = ?, feestatus = ?, certifications = ? where roll = ? ;");
+                    ps.setString(1,Fname);
+                    ps.setString(2,Mname);
+                    ps.setString(3,Lname);
+                    ps.setString(4,caste);
+                    ps.setString(5,gender);
+                    ps.setString(6, motherTongue);
+                    ps.setString(7,modeofTrans);
+                    ps.setString(8, branch);
+                    ps.setString(9, batch);
+                    ps.setString(10, feeStatus);
+                    ps.setString(11, certifications);
+                    ps.setString(12, rollNo);
+                    int row=ps.executeUpdate();
+                    con.close();
+                    clear();
+                }
+                catch(Exception e){
+                    JOptionPane.showMessageDialog(null, e);
+                }
+        JOptionPane.showMessageDialog(this, "Fields Updated Successfully \n"
+                + "First Name: " + Fname + "\n"
+                        + "Middle Name: " + Mname + "\n"
+                                + "Last Name: " + Lname + "\n"
+                                        + "Caste: " + caste + "\n"
+                                                + "Gender: " + gender +"\n"
+                                                        + "Mother of Tongue: " + motherTongue + "\n"
+                                                                + "Mode of Transport: " + modeofTrans + "\n"
+                                                                        + "Branch: " + branch + "\n"
+                                                                                + "Fee Status: " + feeStatus + "\n"
+                                                                                        + "Certifications: " + certifications + "\n");
+        
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
@@ -579,6 +654,55 @@ public class updatePage extends javax.swing.JFrame {
         se.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        String rollNo = jTextField9.getText();
+        String Fname, Mname, Lname, caste, gender, motherTongue, modeofTrans, branch, batch, feeStatus, certifications;
+        Fname = Mname = Lname = caste = gender = motherTongue = modeofTrans = branch = batch = feeStatus = certifications = "";
+        try{
+    PreparedStatement stmt=null; Connection conn = null;
+    Class.forName("com.mysql.jdbc.Driver");
+    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+    stmt = conn.prepareStatement("select * from studentinfo where roll = ?");
+    stmt.setString(1, rollNo);
+    ResultSet r = stmt.executeQuery();
+  
+    while(r.next())
+    {
+        Fname = r.getString(1);
+        Mname = r.getString(2);
+        Lname = r.getString(3);
+        caste = r.getString(4);
+        gender = r.getString(5);
+        motherTongue = r.getString(6);
+        modeofTrans = r.getString(7);
+        branch = r.getString(9);
+        batch = r.getString(10);
+        feeStatus = r.getString(11);
+        certifications = r.getString(12);
+//        System.out.print(Fname);
+    }
+    jTextField1.setText(Fname);
+    jTextField2.setText(Mname);
+    jTextField3.setText(Lname);
+    jComboBox2.setSelectedItem(caste);
+    jComboBox3.setSelectedItem(gender);
+    jTextField7.setText(motherTongue);
+    jTextField8.setText(modeofTrans);
+    jTextField5.setText(branch);
+    jTextField6.setText(batch);
+    jComboBox1.setSelectedItem(feeStatus);
+    jTextArea1.setText(certifications);
+    
+    stmt.close();
+    conn.close(); 
+}
+
+catch(Exception e){
+    System.out.println("ERROR"+ e); 
+}
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

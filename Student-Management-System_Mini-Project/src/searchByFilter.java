@@ -1,3 +1,11 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -27,6 +35,8 @@ public class searchByFilter extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -40,7 +50,6 @@ public class searchByFilter extends javax.swing.JFrame {
         jPanel11 = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -54,6 +63,19 @@ public class searchByFilter extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jTextField4 = new javax.swing.JTextField();
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Age", "Gender", "Address", "Email-Id", "Password", "Caste"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -163,9 +185,7 @@ public class searchByFilter extends javax.swing.JFrame {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(jButton9)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jButton9)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,9 +217,7 @@ public class searchByFilter extends javax.swing.JFrame {
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -216,13 +234,11 @@ public class searchByFilter extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(229, 229, 229))))
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2))
+                .addContainerGap(816, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,27 +247,24 @@ public class searchByFilter extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(268, 268, 268))
+                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(281, 281, 281))
         );
 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel1.setText("Students whose name starts from");
         jLabel1.setPreferredSize(new java.awt.Dimension(207, 17));
 
-        jTextField1.setText("For eg. 'F'");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel3.setText("Caste");
         jLabel3.setPreferredSize(new java.awt.Dimension(207, 17));
 
+        jComboBox2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Open", "OBC", "SC", "ST", "SBC" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,12 +272,15 @@ public class searchByFilter extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel4.setText("Gender");
         jLabel4.setPreferredSize(new java.awt.Dimension(207, 17));
 
+        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel5.setText("Fee Status");
         jLabel5.setPreferredSize(new java.awt.Dimension(207, 17));
 
+        jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Paid", "Not Paid" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,9 +288,11 @@ public class searchByFilter extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel6.setText("Division");
         jLabel6.setPreferredSize(new java.awt.Dimension(207, 17));
 
+        jTextField2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jTextField2.setText("A/B/C....");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -285,9 +303,11 @@ public class searchByFilter extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel9.setText("FILTERS");
 
+        jLabel7.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel7.setText("Mode of Transport");
         jLabel7.setPreferredSize(new java.awt.Dimension(207, 17));
 
+        jTextField3.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jTextField3.setText("Eg. Bus");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,7 +315,7 @@ public class searchByFilter extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButton11.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jButton11.setText("Apply");
         jButton11.setToolTipText("");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -304,9 +324,32 @@ public class searchByFilter extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jRadioButton1.setText("Male");
 
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jRadioButton2.setText("Female");
+
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "First Name", "Second Name", "Last Name", "Caste", "Gender", "Mother Tounge", " Transport Mode", "Roll No.", "Division/Branch", "Batch", "Fee Status", "Previous marks"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jTextField4.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jTextField4.setText("For eg. 'F'");
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -314,33 +357,41 @@ public class searchByFilter extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, 77, Short.MAX_VALUE))
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.LEADING)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(67, 67, 67)
+                                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(101, 101, 101)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,33 +402,37 @@ public class searchByFilter extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jRadioButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioButton2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(139, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -418,10 +473,6 @@ public class searchByFilter extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
@@ -440,16 +491,89 @@ public class searchByFilter extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        details de = new details();
-        de.setVisible(true);
-        dispose();
+        String serverFname;
+        String serverMname;
+        String serverLname;
+        String serverCaste;
+        String serverGender;
+        String serverMT;
+        String serverMode;
+        String serverRoll;
+        String serverBranch;
+        String serverBatch;
+        String serverFeeStatus;
+        String serverCertifications;
+        
+        
+        
+        
+        String startLetter = jTextField4.getText() + "%";
         String gender = "";
         if(jRadioButton1.isSelected()){
             gender = "Male";
         }else if(jRadioButton2.isSelected()){
             gender = "Female";
         }
+        String division = jTextField2.getText();
+        String modeOfTrans = jTextField3.getText();
+        String caste = jComboBox2.getSelectedItem().toString();
+        String feeStatus = jComboBox1.getSelectedItem().toString();
+        if(!startLetter.isEmpty() && !division.isEmpty() && !modeOfTrans.isEmpty() && caste != "Select" &&
+                feeStatus != "Select" && startLetter.length() == 2){
+            PreparedStatement stmt=null; Connection conn = null;
+  
+    try{
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+        stmt = conn.prepareStatement("select * from studentinfo where ((fname like ?) AND (branch = ?)"
+                + " AND (mode = ?) AND (gender = ?) AND (caste = ?) AND (feestatus = ?))");
+        stmt.setString(1, startLetter);
+        stmt.setString(2, division);
+        stmt.setString(3, modeOfTrans);
+        stmt.setString(4, gender);
+        stmt.setString(5, caste);
+        stmt.setString(6, feeStatus);
+        
+        ResultSet r = stmt.executeQuery();
+        DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+        if(m.getRowCount()>0)
+        m.setRowCount(0);
+    while(r.next())
+    {
+        serverFname = r.getString(1);
+        serverMname = r.getString(2);
+        serverLname = r.getString(3);
+        serverCaste = r.getString(4);
+        serverGender = r.getString(5);
+        serverMT = r.getString(6);
+        serverMode = r.getString(7);
+        serverRoll = r.getString(8);
+        serverBranch = r.getString(9);
+        serverBatch = r.getString(10);
+        serverFeeStatus = r.getString(11);
+        serverCertifications = r.getString(12);
+        
+        System.out.print(serverFname);
+        Object[] row = {serverFname, serverMname, serverLname, serverCaste, serverGender, serverMT, 
+        serverMode, serverRoll, serverBranch, serverBatch, serverFeeStatus, serverCertifications};
+        m.addRow(row);
+    }
+    stmt.close();
+    conn.close(); }
+
+catch(Exception e){ System.out.println("ERROR"+ e); }
+        }
+//        else if(){
+//            
+//        }
+        else{
+            JOptionPane.showMessageDialog(this, "Error occured !!");
+        }
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -512,8 +636,12 @@ public class searchByFilter extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
