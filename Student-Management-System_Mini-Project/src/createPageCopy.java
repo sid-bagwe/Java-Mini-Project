@@ -24,6 +24,24 @@ public class createPageCopy extends javax.swing.JFrame {
         initComponents();
     }
     
+    private void clear(){
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        
+        jComboBox2.setSelectedItem("Select");
+        buttonGroup1.clearSelection();
+        jTextField7.setText("");
+        
+        jTextField8.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+
+        jComboBox1.setSelectedItem("Select");
+        jTextArea1.setText("");
+    }
+    
     public boolean validateString(String str) {
       str = str.toLowerCase();
       char[] charArray = str.toCharArray();
@@ -152,6 +170,7 @@ public class createPageCopy extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel7 = new javax.swing.JLabel();
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -263,9 +282,7 @@ public class createPageCopy extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jButton4)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jButton4)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,13 +333,11 @@ public class createPageCopy extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(229, 229, 229))))
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,8 +353,6 @@ public class createPageCopy extends javax.swing.JFrame {
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(268, 268, 268))
         );
-
-        jTextField8.setText("e.g. Bus");
 
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -380,9 +393,13 @@ public class createPageCopy extends javax.swing.JFrame {
         jLabel4.setText("First Name");
 
         jLabel17.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel17.setText("Mother Tongue");
+        jLabel17.setText("Mother Tongue (e.g. Hindi)");
 
-        jTextField7.setText("e.g. Hindi");
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel5.setText("Middle Name");
@@ -391,7 +408,7 @@ public class createPageCopy extends javax.swing.JFrame {
         jLabel6.setText("Last Name");
 
         jLabel18.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel18.setText("Mode of Transport");
+        jLabel18.setText("Mode of Transport (eg. Bus)");
 
         jLabel20.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel20.setText("Previous Marks / Certification");
@@ -409,7 +426,6 @@ public class createPageCopy extends javax.swing.JFrame {
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Describe your previous achievement in 25-30 words");
         jScrollPane2.setViewportView(jTextArea1);
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -435,6 +451,9 @@ public class createPageCopy extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Female");
 
+        jLabel7.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel7.setText("Describe your previous achievement in 25-30 words");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -448,54 +467,50 @@ public class createPageCopy extends javax.swing.JFrame {
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(50, 50, 50))
                             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel8Layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel8Layout.createSequentialGroup()
                                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel8Layout.createSequentialGroup()
                                             .addGap(10, 10, 10)
-                                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel11)
+                                                .addGroup(jPanel8Layout.createSequentialGroup()
+                                                    .addGap(10, 10, 10)
+                                                    .addComponent(jLabel8))
+                                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(jPanel8Layout.createSequentialGroup()
                                             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(jPanel8Layout.createSequentialGroup()
-                                                    .addGap(10, 10, 10)
-                                                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel11)
-                                                        .addGroup(jPanel8Layout.createSequentialGroup()
-                                                            .addGap(10, 10, 10)
-                                                            .addComponent(jLabel8))
-                                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jLabel18)))
-                                                .addGroup(jPanel8Layout.createSequentialGroup()
-                                                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(jPanel8Layout.createSequentialGroup()
-                                                            .addGap(33, 33, 33)
-                                                            .addComponent(jLabel4))
-                                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGap(41, 41, 41)
-                                                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(jPanel8Layout.createSequentialGroup()
-                                                            .addGap(10, 10, 10)
-                                                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(jLabel5)))
-                                                        .addGroup(jPanel8Layout.createSequentialGroup()
-                                                            .addComponent(jRadioButton1)
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                            .addComponent(jRadioButton2)))))
-                                            .addGap(33, 33, 33)
+                                                    .addGap(33, 33, 33)
+                                                    .addComponent(jLabel4))
+                                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(41, 41, 41)
                                             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(jPanel8Layout.createSequentialGroup()
                                                     .addGap(10, 10, 10)
                                                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel17)
-                                                        .addComponent(jLabel6)
-                                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                                    .addGap(34, 34, 34))))
+                                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel5)))
+                                                .addGroup(jPanel8Layout.createSequentialGroup()
+                                                    .addComponent(jRadioButton1)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(jRadioButton2)))))
+                                    .addGap(33, 33, 33)
+                                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel8Layout.createSequentialGroup()
+                                            .addGap(10, 10, 10)
+                                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel6)
+                                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jLabel17)))))
                         .addGap(15, 15, 15))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,7 +518,8 @@ public class createPageCopy extends javax.swing.JFrame {
                                 .addGap(8, 8, 8)
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14)
-                                    .addComponent(jLabel20)))
+                                    .addComponent(jLabel20)
+                                    .addComponent(jLabel7)))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -519,7 +535,10 @@ public class createPageCopy extends javax.swing.JFrame {
                                         .addGap(10, 10, 10)
                                         .addComponent(jLabel13))
                                     .addComponent(jLabel10))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -546,7 +565,7 @@ public class createPageCopy extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2))
                 .addGap(30, 30, 30)
@@ -577,11 +596,13 @@ public class createPageCopy extends javax.swing.JFrame {
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         jScrollPane1.setViewportView(jPanel8);
@@ -591,14 +612,14 @@ public class createPageCopy extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 915, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 951, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -648,7 +669,8 @@ public class createPageCopy extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         // Submit button
-        
+        boolean alreadyExists = true;
+        String serverRoll = "";
         String Fname = jTextField1.getText();
         String Mname = jTextField2.getText();
         String Lname = jTextField3.getText();
@@ -668,7 +690,10 @@ public class createPageCopy extends javax.swing.JFrame {
         String batch =  jTextField6.getText();
 
         String feeStatus = jComboBox1.getSelectedItem().toString();
-        String previousCertifications = jTextArea1.getText(); 
+        String previousCertifications = jTextArea1.getText();
+        PreparedStatement stmt=null; Connection conn = null;
+        
+        
         
         if(Fname.isEmpty() || Mname.isEmpty() || Lname.isEmpty() || caste.isEmpty() || gender.isEmpty() || motherTongue.isEmpty() ||
                 modeofTrans.isEmpty() ||rollNo.isEmpty() ||division.isEmpty() || batch.isEmpty() ||feeStatus.isEmpty() || previousCertifications.isEmpty() 
@@ -681,8 +706,43 @@ public class createPageCopy extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(this, "Validation error occured !");
          }
          else{
-            
+             
+             try{
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+        stmt = conn.prepareStatement("select * from studentinfo where (roll = ?)");
+        stmt.setString(1, rollNo);
         
+        
+        ResultSet r = stmt.executeQuery();
+       
+    while(r.next())
+    {
+        serverRoll = r.getString(8);
+    }
+    if(serverRoll == ""){
+        alreadyExists = false;
+    }
+    stmt.close();
+    conn.close(); }
+
+catch(Exception e){ System.out.println("ERROR"+ e); }
+             
+        if(alreadyExists == false){
+        int result = JOptionPane.showConfirmDialog(this,"Are you sure you want to enroll this student\n"
+                + "First Name: " + Fname + "\n"
+                        + "Middle Name: " + Mname + "\n"
+                                + "Last Name: " + Lname + "\n"
+                                        + "Caste: " + caste + "\n"
+                                                + "Gender: " + gender +"\n"
+                                                        + "Mother of Tongue: " + motherTongue + "\n"
+                                                                + "Mode of Transport: " + modeofTrans + "\n"
+                                                                        + "Branch: " + division + "\n"
+                                                                                + "Fee Status: " + feeStatus + "\n"
+                                                                                        + "Certifications: " + previousCertifications + "\n", "Confirm Create",
+               JOptionPane.YES_NO_OPTION,
+               JOptionPane.QUESTION_MESSAGE);    
+        if(result == JOptionPane.YES_OPTION){
         try { Class.forName("com.mysql.cj.jdbc.Driver"); Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
                 PreparedStatement ps = (PreparedStatement) con.prepareStatement("insert into studentinfo values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
                 ps.setString(1,Fname);
@@ -699,11 +759,16 @@ public class createPageCopy extends javax.swing.JFrame {
                 ps.setString(12, previousCertifications);
                 int row=ps.executeUpdate();
                 con.close();
+                JOptionPane.showMessageDialog(this, "Student record of student with roll number " + rollNo + " enrolled !");
             }
             catch(Exception e){
                 JOptionPane.showMessageDialog(null, e);
             }
-        JOptionPane.showMessageDialog(this, "Student record of student with roll number " + rollNo + " enrolled !");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Student record of student with roll number " + rollNo + " already exists !");
+        }
+        clear();
         }
         }
             
@@ -716,6 +781,10 @@ public class createPageCopy extends javax.swing.JFrame {
         se.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -779,6 +848,7 @@ public class createPageCopy extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

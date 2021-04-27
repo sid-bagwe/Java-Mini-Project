@@ -25,7 +25,7 @@ public class updatePage extends javax.swing.JFrame {
         initComponents();
     }
     
-    public void clear(){
+    private void clear(){
     jTextField1.setText("");
     jTextField2.setText("");
     jTextField3.setText("");

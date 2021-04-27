@@ -2,6 +2,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -23,7 +24,51 @@ public class deletePage extends javax.swing.JFrame {
     public deletePage() {
         initComponents();
     }
-
+    
+    public  boolean onlyDigits(String str)
+    {
+        if (str.matches("[0-9]+")){
+            return true;
+        } 
+        else{
+            return false;
+        }
+    }
+    
+    private void clear(){
+        jTextField9.setText("");
+        jTextField10.setText("");
+        jTextField11.setText("");
+    }
+    
+    private boolean validateDelete(){
+        if(jTextField9.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Roll number field cannot be empty");
+            return false;
+        }
+        else if(!onlyDigits(jTextField9.getText())){
+            JOptionPane.showMessageDialog(this, "Roll number field cannot have text or symbols");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    
+    
+    private boolean validateDeleteMultiple(){
+        if(jTextField10.getText().isEmpty() && jTextField11.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Roll number field cannot be empty");
+            return false;
+        }
+        else if(!onlyDigits(jTextField10.getText()) && !onlyDigits(jTextField11.getText())){
+            JOptionPane.showMessageDialog(this, "Roll number field cannot have text or symbols");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -438,28 +483,35 @@ public class deletePage extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        
         String fromRollno = (jTextField10.getText());
         String toRollno = jTextField11.getText();
+        if(validateDeleteMultiple()){
         JFrame f = new JFrame("Confirm Delete");
         int result = JOptionPane.showConfirmDialog(f,"Are you sure you want to delete multiple records from roll number " + fromRollno + " to roll number "+ toRollno +  "\'s records ?", "Confirm Delete",
                JOptionPane.YES_NO_OPTION,
                JOptionPane.QUESTION_MESSAGE);
         
-        if(result == JOptionPane.YES_OPTION){
+        if(result == JOptionPane.YES_OPTION){    
+            
                 try { Class.forName("com.mysql.cj.jdbc.Driver"); Connection con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
                     PreparedStatement ps = (PreparedStatement) con.prepareStatement("delete from studentinfo where (roll >= ? && roll <= ?);");
                     ps.setString(1,fromRollno);
                     ps.setString(2,toRollno);
                     int row=ps.executeUpdate();
                     con.close();
+                    JOptionPane.showMessageDialog(this, "Record of students from roll number " + fromRollno + " to roll number "+ toRollno +  " is successfully deleted !");
                 }
                 catch(Exception e){
                     JOptionPane.showMessageDialog(null, e);
                 }
-                JOptionPane.showMessageDialog(this, "Record of students from roll number " + fromRollno + " to roll number "+ toRollno +  " is successfully deleted !");
+                
         }
         else{
              JOptionPane.showMessageDialog(this, "Record of students from roll number " + fromRollno + " to roll number "+ toRollno + " is not deleted ! Error occured !");
+        }
+        }else{
+            JOptionPane.showMessageDialog(this, "Validation error occured");
         }
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -467,6 +519,33 @@ public class deletePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         String Rollno = (jTextField9.getText());
         JFrame f = new JFrame("Confirm Delete");
+        boolean doesNotExist = true;
+        String serverRoll = "";
+        
+        if(validateDelete()){
+            PreparedStatement stmt=null; Connection conn = null;
+        try{
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+        stmt = conn.prepareStatement("select * from studentinfo where (roll = ?)");
+        stmt.setString(1, Rollno);
+        
+        
+        ResultSet r = stmt.executeQuery();
+       
+    while(r.next())
+    {
+        serverRoll = r.getString(8);
+    }
+    if(serverRoll != ""){
+        doesNotExist = false;
+    }
+    stmt.close();
+    conn.close(); }
+
+catch(Exception e){ System.out.println("ERROR"+ e); }    
+        
+        if(!doesNotExist){
         int result = JOptionPane.showConfirmDialog(f,"Are you sure you want to delete roll number " + Rollno + "\'s records ?", "Confirm Delete",
                JOptionPane.YES_NO_OPTION,
                JOptionPane.QUESTION_MESSAGE);
@@ -477,15 +556,25 @@ public class deletePage extends javax.swing.JFrame {
                     ps.setString(1,Rollno);
                     int row=ps.executeUpdate();
                     con.close();
+                    JOptionPane.showMessageDialog(this, "Record of student " + Rollno + " is successfully deleted !");
                 }
                 catch(Exception e){
                     JOptionPane.showMessageDialog(null, e);
                 }
-                JOptionPane.showMessageDialog(this, "Record of student " + Rollno + " is successfully deleted !");
+                
         }
         else{
              JOptionPane.showMessageDialog(this, "Record of student " + Rollno + " is not deleted ! Error occured !");
         }
+        }else{
+            JOptionPane.showMessageDialog(this, "Record you are trying to delete does not exist !");
+        }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Validation Error occured");
+        }
+        
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
