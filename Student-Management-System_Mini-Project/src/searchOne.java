@@ -1,3 +1,10 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -510,7 +517,28 @@ public class searchOne extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+public  boolean onlyDigits(String str)
+    {
+        if (str.matches("[0-9]+")){
+            return true;
+        } 
+        else{
+            return false;
+        }
+    }
+    private boolean validateSearch(){
+        if(jTextField9.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Roll number field cannot be empty");
+            return false;
+        }
+        else if(!onlyDigits(jTextField9.getText())){
+            JOptionPane.showMessageDialog(this, "Roll number field cannot have text or symbols");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         homePage h1 = new homePage();
@@ -559,6 +587,66 @@ public class searchOne extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+          String rollNo = jTextField9.getText();
+          boolean doesNotExist = true;
+          String serverRoll = "";
+        String Fname, Mname, Lname, caste, gender, motherTongue, modeofTrans, branch, batch, feeStatus, certifications;
+        Fname = Mname = Lname = caste = gender = motherTongue = modeofTrans = branch = batch = feeStatus = certifications = "";
+        if(validateSearch()){
+        try{
+    PreparedStatement stmt=null; Connection conn = null;
+    Class.forName("com.mysql.jdbc.Driver");
+    conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+    stmt = conn.prepareStatement("select * from studentinfo where roll = ?");
+    stmt.setString(1, rollNo);
+    ResultSet r = stmt.executeQuery();
+    while(r.next())
+    {
+        serverRoll = r.getString(8);
+    }
+    if(serverRoll != ""){
+        doesNotExist = false;
+    }
+  
+    while(r.next())
+    {
+        Fname = r.getString(1);
+        Mname = r.getString(2);
+        Lname = r.getString(3);
+        caste = r.getString(4);
+        gender = r.getString(5);
+        motherTongue = r.getString(6);
+        modeofTrans = r.getString(7);
+        branch = r.getString(9);
+        batch = r.getString(10);
+        feeStatus = r.getString(11);
+        certifications = r.getString(12);
+//        System.out.print(Fname);
+    }
+    jTextField1.setText(Fname);
+    jTextField2.setText(Mname);
+    jTextField3.setText(Lname);
+    jComboBox2.setSelectedItem(caste);
+    jComboBox3.setSelectedItem(gender);
+    jTextField7.setText(motherTongue);
+    jTextField8.setText(modeofTrans);
+    jTextField5.setText(branch);
+    jTextField6.setText(batch);
+    jComboBox1.setSelectedItem(feeStatus);
+    jTextArea1.setText(certifications);
+    
+    stmt.close();
+    conn.close(); 
+}
+
+catch(Exception e){
+    System.out.println("ERROR"+ e); 
+}
+        if(doesNotExist){
+            JOptionPane.showMessageDialog(this, "Record you are trying to search does not exist !");
+        }
+        }
+          
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
