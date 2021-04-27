@@ -66,6 +66,9 @@ public class searchByFilter extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTextField4 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -289,11 +292,10 @@ public class searchByFilter extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jLabel6.setText("Division");
+        jLabel6.setText("Division / Branch (For eg: A or IT)");
         jLabel6.setPreferredSize(new java.awt.Dimension(207, 17));
 
         jTextField2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jTextField2.setText("A/B/C....");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -304,11 +306,10 @@ public class searchByFilter extends javax.swing.JFrame {
         jLabel9.setText("FILTERS");
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jLabel7.setText("Mode of Transport");
+        jLabel7.setText("Mode of Transport (For eg: Bus)");
         jLabel7.setPreferredSize(new java.awt.Dimension(207, 17));
 
         jTextField3.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jTextField3.setText("Eg. Bus");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -344,10 +345,23 @@ public class searchByFilter extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jTextField4.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jTextField4.setText("For eg. 'F'");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel8.setText("(For eg: F)");
+
+        jLabel10.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel10.setText("Note: You can use only one or all the filters at a time.");
+
+        jButton1.setText("Display All Records");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -367,29 +381,33 @@ public class searchByFilter extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jRadioButton2, javax.swing.GroupLayout.Alignment.LEADING)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(67, 67, 67)
-                                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(101, 101, 101)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel10)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(67, 67, 67)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -399,11 +417,15 @@ public class searchByFilter extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -423,16 +445,18 @@ public class searchByFilter extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
@@ -518,6 +542,10 @@ public class searchByFilter extends javax.swing.JFrame {
         String modeOfTrans = jTextField3.getText();
         String caste = jComboBox2.getSelectedItem().toString();
         String feeStatus = jComboBox1.getSelectedItem().toString();
+        
+        
+        
+        
         if(!startLetter.isEmpty() && !division.isEmpty() && !modeOfTrans.isEmpty() && caste != "Select" &&
                 feeStatus != "Select" && startLetter.length() == 2){
             PreparedStatement stmt=null; Connection conn = null;
@@ -558,22 +586,351 @@ public class searchByFilter extends javax.swing.JFrame {
         serverMode, serverRoll, serverBranch, serverBatch, serverFeeStatus, serverCertifications};
         m.addRow(row);
     }
+    if(m.getRowCount() == 0){
+        JOptionPane.showMessageDialog(this, "No record found !!");
+    }
     stmt.close();
     conn.close(); }
 
 catch(Exception e){ System.out.println("ERROR"+ e); }
         }
-//        else if(){
-//            
-//        }
+        
+    else if(!startLetter.isEmpty() && (division.isEmpty()) && (modeOfTrans.isEmpty()) && caste == "Select" &&
+                feeStatus == "Select" && startLetter.length() == 2 && gender.isEmpty()){
+            PreparedStatement stmt=null; Connection conn = null;
+  
+    try{
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+        stmt = conn.prepareStatement("select * from studentinfo where (fname like ?);");
+        stmt.setString(1, startLetter);
+        
+        
+        ResultSet r = stmt.executeQuery();
+        DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+        if(m.getRowCount()>0)
+        m.setRowCount(0);
+    while(r.next())
+    {
+        serverFname = r.getString(1);
+        serverMname = r.getString(2);
+        serverLname = r.getString(3);
+        serverCaste = r.getString(4);
+        serverGender = r.getString(5);
+        serverMT = r.getString(6);
+        serverMode = r.getString(7);
+        serverRoll = r.getString(8);
+        serverBranch = r.getString(9);
+        serverBatch = r.getString(10);
+        serverFeeStatus = r.getString(11);
+        serverCertifications = r.getString(12);
+        
+        System.out.print(serverFname);
+        Object[] row = {serverFname, serverMname, serverLname, serverCaste, serverGender, serverMT, 
+        serverMode, serverRoll, serverBranch, serverBatch, serverFeeStatus, serverCertifications};
+        m.addRow(row);
+    }
+    if(m.getRowCount() == 0){
+        JOptionPane.showMessageDialog(this, "No record found !!");
+    }
+    stmt.close();
+    conn.close(); }
+
+catch(Exception e){ System.out.println("ERROR"+ e); }
+            
+        }
+    
+    else if(startLetter.length() == 1 && !(division.isEmpty()) && (modeOfTrans.isEmpty()) && caste == "Select" &&
+                feeStatus == "Select" && gender.isEmpty()){
+            PreparedStatement stmt=null; Connection conn = null;
+  
+    try{
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+        stmt = conn.prepareStatement("select * from studentinfo where (branch = ?)");
+        stmt.setString(1, division);
+        
+        
+        ResultSet r = stmt.executeQuery();
+        DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+        if(m.getRowCount()>0)
+        m.setRowCount(0);
+    while(r.next())
+    {
+        serverFname = r.getString(1);
+        serverMname = r.getString(2);
+        serverLname = r.getString(3);
+        serverCaste = r.getString(4);
+        serverGender = r.getString(5);
+        serverMT = r.getString(6);
+        serverMode = r.getString(7);
+        serverRoll = r.getString(8);
+        serverBranch = r.getString(9);
+        serverBatch = r.getString(10);
+        serverFeeStatus = r.getString(11);
+        serverCertifications = r.getString(12);
+        
+        System.out.print(serverFname);
+        Object[] row = {serverFname, serverMname, serverLname, serverCaste, serverGender, serverMT, 
+        serverMode, serverRoll, serverBranch, serverBatch, serverFeeStatus, serverCertifications};
+        m.addRow(row);
+    }
+    if(m.getRowCount() == 0){
+        JOptionPane.showMessageDialog(this, "No record found !!");
+    }
+    stmt.close();
+    conn.close(); }
+
+catch(Exception e){ System.out.println("ERROR"+ e); }
+            
+        }
+    
+    else if(startLetter.length() == 1 && (division.isEmpty()) && !(modeOfTrans.isEmpty()) && caste == "Select" &&
+                feeStatus == "Select" && gender.isEmpty()){
+            PreparedStatement stmt=null; Connection conn = null;
+  
+    try{
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+        stmt = conn.prepareStatement("select * from studentinfo where (mode = ?)");
+        stmt.setString(1, modeOfTrans);
+        
+        
+        ResultSet r = stmt.executeQuery();
+        DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+        if(m.getRowCount()>0)
+        m.setRowCount(0);
+    while(r.next())
+    {
+        serverFname = r.getString(1);
+        serverMname = r.getString(2);
+        serverLname = r.getString(3);
+        serverCaste = r.getString(4);
+        serverGender = r.getString(5);
+        serverMT = r.getString(6);
+        serverMode = r.getString(7);
+        serverRoll = r.getString(8);
+        serverBranch = r.getString(9);
+        serverBatch = r.getString(10);
+        serverFeeStatus = r.getString(11);
+        serverCertifications = r.getString(12);
+        
+        System.out.print(serverFname);
+        Object[] row = {serverFname, serverMname, serverLname, serverCaste, serverGender, serverMT, 
+        serverMode, serverRoll, serverBranch, serverBatch, serverFeeStatus, serverCertifications};
+        m.addRow(row);
+    }
+    if(m.getRowCount() == 0){
+        JOptionPane.showMessageDialog(this, "No record found !!");
+    }
+    stmt.close();
+    conn.close(); }
+
+catch(Exception e){ System.out.println("ERROR"+ e); }
+            
+        }
+    
+    else if(startLetter.length() == 1 && (division.isEmpty()) && (modeOfTrans.isEmpty()) && caste != "Select" &&
+                feeStatus == "Select" && gender.isEmpty()){
+            PreparedStatement stmt=null; Connection conn = null;
+  
+    try{
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+        stmt = conn.prepareStatement("select * from studentinfo where (caste = ?)");
+        stmt.setString(1, caste);
+        
+        
+        ResultSet r = stmt.executeQuery();
+        DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+        if(m.getRowCount()>0)
+        m.setRowCount(0);
+    while(r.next())
+    {
+        serverFname = r.getString(1);
+        serverMname = r.getString(2);
+        serverLname = r.getString(3);
+        serverCaste = r.getString(4);
+        serverGender = r.getString(5);
+        serverMT = r.getString(6);
+        serverMode = r.getString(7);
+        serverRoll = r.getString(8);
+        serverBranch = r.getString(9);
+        serverBatch = r.getString(10);
+        serverFeeStatus = r.getString(11);
+        serverCertifications = r.getString(12);
+        
+        System.out.print(serverFname);
+        Object[] row = {serverFname, serverMname, serverLname, serverCaste, serverGender, serverMT, 
+        serverMode, serverRoll, serverBranch, serverBatch, serverFeeStatus, serverCertifications};
+        m.addRow(row);
+    }
+    if(m.getRowCount() == 0){
+        JOptionPane.showMessageDialog(this, "No record found !!");
+    }
+    stmt.close();
+    conn.close(); }
+
+catch(Exception e){ System.out.println("ERROR"+ e); }
+            
+        }
+    
+    else if(startLetter.length() == 1 && (division.isEmpty()) && (modeOfTrans.isEmpty()) && caste == "Select" &&
+                feeStatus != "Select" && gender.isEmpty()){
+            PreparedStatement stmt=null; Connection conn = null;
+  
+    try{
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+        stmt = conn.prepareStatement("select * from studentinfo where (feestatus = ?)");
+        stmt.setString(1, feeStatus);
+        
+        
+        ResultSet r = stmt.executeQuery();
+        DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+        if(m.getRowCount()>0)
+        m.setRowCount(0);
+    while(r.next())
+    {
+        serverFname = r.getString(1);
+        serverMname = r.getString(2);
+        serverLname = r.getString(3);
+        serverCaste = r.getString(4);
+        serverGender = r.getString(5);
+        serverMT = r.getString(6);
+        serverMode = r.getString(7);
+        serverRoll = r.getString(8);
+        serverBranch = r.getString(9);
+        serverBatch = r.getString(10);
+        serverFeeStatus = r.getString(11);
+        serverCertifications = r.getString(12);
+        
+        System.out.print(serverFname);
+        Object[] row = {serverFname, serverMname, serverLname, serverCaste, serverGender, serverMT, 
+        serverMode, serverRoll, serverBranch, serverBatch, serverFeeStatus, serverCertifications};
+        m.addRow(row);
+    }
+    if(m.getRowCount() == 0){
+        JOptionPane.showMessageDialog(this, "No record found !!");
+    }
+    stmt.close();
+    conn.close(); }
+
+catch(Exception e){ System.out.println("ERROR"+ e); }
+            
+        }
+    
+    else if(startLetter.length() == 1 && (division.isEmpty()) && (modeOfTrans.isEmpty()) && caste == "Select" &&
+                feeStatus == "Select" && !gender.isEmpty()){
+            PreparedStatement stmt=null; Connection conn = null;
+  
+    try{
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+        stmt = conn.prepareStatement("select * from studentinfo where (gender = ?)");
+        stmt.setString(1, gender);
+        
+        
+        ResultSet r = stmt.executeQuery();
+        DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+        if(m.getRowCount()>0)
+        m.setRowCount(0);
+    while(r.next())
+    {
+        serverFname = r.getString(1);
+        serverMname = r.getString(2);
+        serverLname = r.getString(3);
+        serverCaste = r.getString(4);
+        serverGender = r.getString(5);
+        serverMT = r.getString(6);
+        serverMode = r.getString(7);
+        serverRoll = r.getString(8);
+        serverBranch = r.getString(9);
+        serverBatch = r.getString(10);
+        serverFeeStatus = r.getString(11);
+        serverCertifications = r.getString(12);
+        
+        System.out.print(serverFname);
+        Object[] row = {serverFname, serverMname, serverLname, serverCaste, serverGender, serverMT, 
+        serverMode, serverRoll, serverBranch, serverBatch, serverFeeStatus, serverCertifications};
+        m.addRow(row);
+    }
+    if(m.getRowCount() == 0){
+        JOptionPane.showMessageDialog(this, "No record found !!");
+    }
+    stmt.close();
+    conn.close(); }
+
+catch(Exception e){ System.out.println("ERROR"+ e); }
+            
+        }
+    
+    
         else{
-            JOptionPane.showMessageDialog(this, "Error occured !!");
+            JOptionPane.showMessageDialog(this, "Error Occured !!\n"
+                    + "Note: You can use only one or all the filters at a time.");
         }
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String serverFname;
+        String serverMname;
+        String serverLname;
+        String serverCaste;
+        String serverGender;
+        String serverMT;
+        String serverMode;
+        String serverRoll;
+        String serverBranch;
+        String serverBatch;
+        String serverFeeStatus;
+        String serverCertifications;
+        PreparedStatement stmt=null; Connection conn = null;
+        try{
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/miniproject_db","root","");
+        stmt = conn.prepareStatement("select * from studentinfo");
+     
+   
+        
+        ResultSet r = stmt.executeQuery();
+        DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+        if(m.getRowCount()>0)
+        m.setRowCount(0);
+    while(r.next())
+    {
+        serverFname = r.getString(1);
+        serverMname = r.getString(2);
+        serverLname = r.getString(3);
+        serverCaste = r.getString(4);
+        serverGender = r.getString(5);
+        serverMT = r.getString(6);
+        serverMode = r.getString(7);
+        serverRoll = r.getString(8);
+        serverBranch = r.getString(9);
+        serverBatch = r.getString(10);
+        serverFeeStatus = r.getString(11);
+        serverCertifications = r.getString(12);
+        
+        System.out.print(serverFname);
+        Object[] row = {serverFname, serverMname, serverLname, serverCaste, serverGender, serverMT, 
+        serverMode, serverRoll, serverBranch, serverBatch, serverFeeStatus, serverCertifications};
+        m.addRow(row);
+    }
+    if(m.getRowCount() == 0){
+        JOptionPane.showMessageDialog(this, "No record found !!");
+    }
+    stmt.close();
+    conn.close(); }
+
+catch(Exception e){ System.out.println("ERROR"+ e); }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -612,6 +969,7 @@ catch(Exception e){ System.out.println("ERROR"+ e); }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton6;
@@ -621,12 +979,14 @@ catch(Exception e){ System.out.println("ERROR"+ e); }
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
