@@ -17,12 +17,38 @@ import javax.swing.table.DefaultTableModel;
  * @author Ajit B
  */
 public class updatePage extends javax.swing.JFrame {
+    
+    
 
     /**
      * Creates new form updatePage
      */
     public updatePage() {
         initComponents();
+    }
+    
+    public  boolean onlyDigits(String str)
+    {
+        if (str.matches("[0-9]+")){
+            return true;
+        } 
+        else{
+            return false;
+        }
+    }
+    
+    private boolean validateUpdate(){
+        if(jTextField9.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Roll number field cannot be empty");
+            return false;
+        }
+        else if(!onlyDigits(jTextField9.getText())){
+            JOptionPane.showMessageDialog(this, "Roll number field cannot have text or symbols");
+            return false;
+        }
+        else{
+            return true;
+        }
     }
     
     private void clear(){
@@ -418,10 +444,10 @@ public class updatePage extends javax.swing.JFrame {
                                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jPanel8Layout.createSequentialGroup()
                                                 .addGap(10, 10, 10)
-                                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel5)
-                                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                                 .addGap(45, 45, 45)
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -658,6 +684,7 @@ public class updatePage extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
         String rollNo = jTextField9.getText();
+        if(validateUpdate()){
         String Fname, Mname, Lname, caste, gender, motherTongue, modeofTrans, branch, batch, feeStatus, certifications;
         Fname = Mname = Lname = caste = gender = motherTongue = modeofTrans = branch = batch = feeStatus = certifications = "";
         try{
@@ -683,6 +710,10 @@ public class updatePage extends javax.swing.JFrame {
         certifications = r.getString(12);
 //        System.out.print(Fname);
     }
+    if(Fname == ""){
+        JOptionPane.showMessageDialog(this, "Error Occured ! Record you are trying to update does not exist \n");
+    }
+    
     jTextField1.setText(Fname);
     jTextField2.setText(Mname);
     jTextField3.setText(Lname);
@@ -696,12 +727,16 @@ public class updatePage extends javax.swing.JFrame {
     jTextArea1.setText(certifications);
     
     stmt.close();
-    conn.close(); 
+    conn.close();
+    
 }
 
 catch(Exception e){
     System.out.println("ERROR"+ e); 
 }
+        }else{
+            JOptionPane.showMessageDialog(this, "Validation error occured ! Try Entering Roll number again\n");
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**

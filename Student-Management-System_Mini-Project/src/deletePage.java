@@ -57,11 +57,11 @@ public class deletePage extends javax.swing.JFrame {
     
     
     private boolean validateDeleteMultiple(){
-        if(jTextField10.getText().isEmpty() && jTextField11.getText().isEmpty()){
+        if(jTextField10.getText().isEmpty() || jTextField11.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Roll number field cannot be empty");
             return false;
         }
-        else if(!onlyDigits(jTextField10.getText()) && !onlyDigits(jTextField11.getText())){
+        else if(!onlyDigits(jTextField10.getText()) || !onlyDigits(jTextField11.getText())){
             JOptionPane.showMessageDialog(this, "Roll number field cannot have text or symbols");
             return false;
         }
@@ -265,7 +265,7 @@ public class deletePage extends javax.swing.JFrame {
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -508,11 +508,12 @@ public class deletePage extends javax.swing.JFrame {
                 
         }
         else{
-             JOptionPane.showMessageDialog(this, "Record of students from roll number " + fromRollno + " to roll number "+ toRollno + " is not deleted ! Error occured !");
+             JOptionPane.showMessageDialog(this, "Record of students from roll number " + fromRollno + " to roll number "+ toRollno + " is not deleted !!");
         }
         }else{
             JOptionPane.showMessageDialog(this, "Validation error occured");
         }
+        clear();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -560,8 +561,7 @@ catch(Exception e){ System.out.println("ERROR"+ e); }
                 }
                 catch(Exception e){
                     JOptionPane.showMessageDialog(null, e);
-                }
-                
+                }  
         }
         else{
              JOptionPane.showMessageDialog(this, "Record of student " + Rollno + " is not deleted ! Error occured !");
@@ -573,7 +573,7 @@ catch(Exception e){ System.out.println("ERROR"+ e); }
         else{
             JOptionPane.showMessageDialog(this, "Validation Error occured");
         }
-        
+        clear();
         
     }//GEN-LAST:event_jButton7ActionPerformed
 

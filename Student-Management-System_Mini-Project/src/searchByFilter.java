@@ -24,6 +24,17 @@ public class searchByFilter extends javax.swing.JFrame {
     public searchByFilter() {
         initComponents();
     }
+    
+    private void clear(){
+        jTextField4.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        
+        jComboBox2.setSelectedItem("Select");
+        buttonGroup1.clearSelection();
+
+        jComboBox1.setSelectedItem("Select");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -453,8 +464,8 @@ public class searchByFilter extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
         pack();
@@ -629,7 +640,9 @@ catch(Exception e){ System.out.println("ERROR"+ e); }
         m.addRow(row);
     }
     if(m.getRowCount() == 0){
+      
         JOptionPane.showMessageDialog(this, "No record found !!");
+        
     }
     stmt.close();
     conn.close(); }
@@ -675,6 +688,7 @@ catch(Exception e){ System.out.println("ERROR"+ e); }
     }
     if(m.getRowCount() == 0){
         JOptionPane.showMessageDialog(this, "No record found !!");
+       
     }
     stmt.close();
     conn.close(); }
@@ -720,6 +734,7 @@ catch(Exception e){ System.out.println("ERROR"+ e); }
     }
     if(m.getRowCount() == 0){
         JOptionPane.showMessageDialog(this, "No record found !!");
+       
     }
     stmt.close();
     conn.close(); }
@@ -765,6 +780,7 @@ catch(Exception e){ System.out.println("ERROR"+ e); }
     }
     if(m.getRowCount() == 0){
         JOptionPane.showMessageDialog(this, "No record found !!");
+        
     }
     stmt.close();
     conn.close(); }
@@ -810,6 +826,7 @@ catch(Exception e){ System.out.println("ERROR"+ e); }
     }
     if(m.getRowCount() == 0){
         JOptionPane.showMessageDialog(this, "No record found !!");
+      
     }
     stmt.close();
     conn.close(); }
@@ -855,6 +872,7 @@ catch(Exception e){ System.out.println("ERROR"+ e); }
     }
     if(m.getRowCount() == 0){
         JOptionPane.showMessageDialog(this, "No record found !!");
+        
     }
     stmt.close();
     conn.close(); }
@@ -867,7 +885,9 @@ catch(Exception e){ System.out.println("ERROR"+ e); }
         else{
             JOptionPane.showMessageDialog(this, "Error Occured !!\n"
                     + "Note: You can use only one or all the filters at a time.");
+          
         }
+        clear();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed

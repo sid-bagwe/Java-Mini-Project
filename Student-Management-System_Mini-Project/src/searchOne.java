@@ -23,6 +23,21 @@ public class searchOne extends javax.swing.JFrame {
     public searchOne() {
         initComponents();
     }
+    
+   private void clear(){
+    jTextField1.setText("");
+    jTextField2.setText("");
+    jTextField3.setText("");
+    jComboBox2.setSelectedItem("Select");
+    jComboBox3.setSelectedItem("Select");
+    jTextField7.setText("");
+    jTextField8.setText("");
+    jTextField5.setText("");
+    jTextField6.setText("");
+    jComboBox1.setSelectedItem("Select");
+    jTextArea1.setText("");
+    jTextField9.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -529,10 +544,12 @@ public  boolean onlyDigits(String str)
     private boolean validateSearch(){
         if(jTextField9.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Roll number field cannot be empty");
+            clear();
             return false;
         }
         else if(!onlyDigits(jTextField9.getText())){
             JOptionPane.showMessageDialog(this, "Roll number field cannot have text or symbols");
+            clear();
             return false;
         }
         else{
@@ -588,7 +605,6 @@ public  boolean onlyDigits(String str)
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
           String rollNo = jTextField9.getText();
-          boolean doesNotExist = true;
           String serverRoll = "";
         String Fname, Mname, Lname, caste, gender, motherTongue, modeofTrans, branch, batch, feeStatus, certifications;
         Fname = Mname = Lname = caste = gender = motherTongue = modeofTrans = branch = batch = feeStatus = certifications = "";
@@ -600,13 +616,13 @@ public  boolean onlyDigits(String str)
     stmt = conn.prepareStatement("select * from studentinfo where roll = ?");
     stmt.setString(1, rollNo);
     ResultSet r = stmt.executeQuery();
-    while(r.next())
-    {
-        serverRoll = r.getString(8);
-    }
-    if(serverRoll != ""){
-        doesNotExist = false;
-    }
+//    while(r.next())
+//    {
+//        serverRoll = r.getString(8);
+//    }
+//    if(serverRoll != ""){
+//        doesNotExist = false;
+//    }
   
     while(r.next())
     {
@@ -623,6 +639,11 @@ public  boolean onlyDigits(String str)
         certifications = r.getString(12);
 //        System.out.print(Fname);
     }
+    if(Fname.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Record you are trying to search does not exist !");
+        clear();
+    }
+    
     jTextField1.setText(Fname);
     jTextField2.setText(Mname);
     jTextField3.setText(Lname);
@@ -642,9 +663,6 @@ public  boolean onlyDigits(String str)
 catch(Exception e){
     System.out.println("ERROR"+ e); 
 }
-        if(doesNotExist){
-            JOptionPane.showMessageDialog(this, "Record you are trying to search does not exist !");
-        }
         }
           
     }//GEN-LAST:event_jButton7ActionPerformed
